@@ -1,1 +1,1 @@
-type token = String of string | Stream of string | Comma | Semicolon | Point;;
+type token = String of string | Entity of string | Comma | Semicolon | Point;;

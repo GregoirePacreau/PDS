@@ -28,19 +28,21 @@ rule tokenize = parse
 
 
   | '<' ((_# '>') + as lxm) '>'
-    {ENTITY lxm :: tokenize lexbuf}
+    {Entity lxm :: tokenize lexbuf}
 
-  | '"' (_#'"')+ '"'
-    {STRING lxm::tokenize lexbuf}
+  | '"' ((_#'"')+ as lxm) '"'
+    {String lxm::tokenize lexbuf}
 
   | '.'
-    {PERIOD::tokenize lexbuf}
+    {Point::tokenize lexbuf}
 
   | ','
-    {COMMA::tokenize lexbuf}
+    {Comma::tokenize lexbuf}
 
   | ';'
-    {SEMICOLON::tokenize lexbuf}
+    {Semicolon::tokenize lexbuf}
+
+  | eof {[]}
 
   (* catch errors *)
   | _ as c
